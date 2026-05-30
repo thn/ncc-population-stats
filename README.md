@@ -2,9 +2,9 @@
 
 Historical server stats for the unofficial neocron.org Saturn server. Not to be confused with the official Saturn server in Neocron 1 run by ReaKKtor, or with any of the current official Neocron Evolution Servers run by the Neocron Support Team at https://neocron-game.com
 
-The THN had planned to import this into the Stats DB at https://stats.techhaven.org/ but never got around to it. A simple cron job collected the output of the neocron.org server API every 10 minutes, storing the results as timestamped files. All source files can be found in the tar.gz in the source directory.
+The THN had planned to import this into the Stats DB at https://stats.techhaven.org/ but never got around to it. A simple cron job collected the output of the neocron.org server API every 10 minutes, storing the results as timestamped files. All source files can be found in the tar.gz in the `source` directory.
 
-The stats directory contains the combined JSON files from the source, in the following format for each month.
+The `stats` directory contains the combined JSON files from the source, in the following format for each month.
 
 ```json
 [
@@ -123,3 +123,12 @@ Only server-up (`status=1`) samples are counted.
 | 2022-04 | — | — | 0 |
 | 2022-08 | — | — | 0 |
 | 2022-09 | — | — | 0 |
+
+## Regenerating the stats directory
+
+`combine.py` reads from `source/` and writes one JSON file per month to `stats/`. Extract the tar.gz archive in `source/` before running:
+
+```sh
+tar -xzf source/*.tar.gz -C source/
+python3 combine.py
+```
